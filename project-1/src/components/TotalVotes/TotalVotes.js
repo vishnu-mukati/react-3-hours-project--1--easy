@@ -1,29 +1,12 @@
-import React, { useContext } from "react";
-import VoteContext from "../../store/Vote-Context";
+import React from "react"
 
-const TotalVotes = () => {
-    const { votes } = useContext(VoteContext);
-    const uniqueMonitors = ["Ram", "Shyam", "Babu"];
-
-    let overallTotal = 0;
-    
+const TotalVotes = (props) => {
     return (
         <React.Fragment>
-            <h2>Class Monitor Votes</h2>
-            <ul>
-                {uniqueMonitors.map((monitor) => {
-                    const count = votes.filter(vote => vote.monitor === monitor).length;
-                    overallTotal += count;
-                    return (
-                        <li key={monitor}>
-                            {monitor}: {count} votes
-                        </li>
-                    );
-                })}
-            </ul>
-            <h3>Total Votes: {overallTotal}</h3>
+
+        <h1>Class Monitor Vote</h1>
+        <p>Total Votes: {props.totalvotes}</p>
         </React.Fragment>
     );
-};
-
+}
 export default TotalVotes;

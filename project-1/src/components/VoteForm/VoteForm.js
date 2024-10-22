@@ -1,11 +1,10 @@
-import React, { useState, useContext } from "react";
-import VoteContext from "../../store/Vote-Context";
+import React, { useState } from "react";
 
-const VoteForm = () => {
+const VoteForm = (props) => {
     const [enteredName, setEnteredName] = useState('');
     const [enteredMonitorName, setEnteredMonitorName] = useState('Ram');
     
-    const ctx = useContext(VoteContext);
+   
 
     const nameChangeHandler = (event) => {
         setEnteredName(event.target.value);
@@ -17,12 +16,15 @@ const VoteForm = () => {
 
     const submitHandler = (event) => {
         event.preventDefault();
-        ctx.addVote({ student: enteredName, monitor: enteredMonitorName });
+        if(enteredName.length>0){
+            props.onSaveData(enteredName,enteredMonitorName);
+        }
         setEnteredName("");
         setEnteredMonitorName("Ram");
     };
-
+ 
     return (
+       
         <form onSubmit={submitHandler}>
             <label htmlFor="student-name">Student Name:</label>
             <input type="text" id="student-name" onChange={nameChangeHandler} value={enteredName} />
