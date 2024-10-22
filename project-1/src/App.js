@@ -35,9 +35,7 @@ function App() {
 
   let count = 0;
   monitorVotes.forEach((object) => {
-    object.votes.map((array) => {
-      count = count + 1;
-    })
+   count = count + object.votes.length
   })
   const totalvotes = count;
 
